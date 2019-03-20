@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<h1>The Psychic Game</h1>
+<h4>Guess what letter I'm thinking of </h4>
+<h2>Wins: <span id="wins_id">0</span></h2>
+<h2>Losses: <span id="Losses_id">0</span></h2>
+<h2>Guesses left: <span id="Guesses_id">9</span></h2>
+<h2>Your Guesses so far: <span id="_id"></span></h2>
+<script>
+    var letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+
+    var wins = document.getElementById("wins_id")
+    var losses = document.getElementById("Losses_id")
+    var guesses = document.getElementById("Guesses_id")
+    var randomLetters = letters[Math.floor(Math.random() * 27)]
+    console.log(randomLetters)
+    window.onkeypress = function (event) {
+        var user_guess=event.keyCode
+      if((user_guess>=65&&user_guess<=90)||(user_guess>=97&&user_guess<=122)){
+        user_guess = String.fromCharCode(event.keyCode).toLowerCase()
+  
+        if (parseInt(guesses.innerHTML) > 0 && parseInt(guesses.innerHTML)<=9)
+        {
+
+            if (randomLetters === user_guess) {
+                wins.innerHTML = parseInt(wins.innerHTML) + 1
+                guesses.innerHTML = 9
+                randomLetters = letters[Math.floor(Math.random() * 27)]
+            }
+            else if (randomLetters !== user_guess) {
+                guesses.innerHTML = parseInt(guesses.innerHTML) - 1
+
+            }
+        }
+        else {
+            losses.innerHTML = parseInt(losses.innerHTML) + 1
+            guesses.innerHTML = 9
+            randomLetters = letters[Math.floor(Math.random() * 27)]
+        }
+      }
+    }
+      
+</script>
+
+<body>
+
+</body>
+
+</html>
